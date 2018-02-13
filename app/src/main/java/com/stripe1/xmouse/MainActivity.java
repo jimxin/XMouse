@@ -461,9 +461,9 @@ public class MainActivity extends AppCompatActivity implements MyInterface, Navi
 	 	/*case KeyEvent.KEYCODE_MENU:
 	   case KeyEvent.KEYCODE_SEARCH:
 	   case KeyEvent.KEYCODE_BACK:*/
+            case KeyEvent.KEYCODE_DPAD_UP:
+            case KeyEvent.KEYCODE_DPAD_DOWN:
             case KeyEvent.KEYCODE_VOLUME_UP:
-                event.startTracking();
-                return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 event.startTracking();
                 return true;
@@ -475,6 +475,16 @@ public class MainActivity extends AppCompatActivity implements MyInterface, Navi
         switch(keyCode){
        /*case KeyEvent.KEYCODE_MENU:
        case KeyEvent.KEYCODE_SEARCH:*/
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if(event.isTracking() && !event.isCanceled()){
+                    conn.executeShellCommand("xdotool key Up");
+                }
+                return true;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if(event.isTracking() && !event.isCanceled()){
+                    conn.executeShellCommand("xdotool key Down");
+                }
+                return true;
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if(event.isTracking() && !event.isCanceled()){
                     //Toast.makeText(this, "Volumen Up released", Toast.LENGTH_SHORT).show();
